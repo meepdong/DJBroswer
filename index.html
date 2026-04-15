@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browser-based DJ setup with dual YouTube players, crossfader, and queue management." />
+    <title>DJ Browser — Dual YouTube Mixer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header id="header">
+        <div class="logo">
+          <span class="logo-icon">🎧</span>
+          <h1>DJ Browser</h1>
+        </div>
+      </header>
+
+      <!-- Decks Container -->
+      <main id="decks-container">
+        <!-- Deck A -->
+        <section id="deck-a" class="deck deck-a">
+          <div class="deck-header">
+            <span class="deck-label">DECK A</span>
+            <span class="deck-now-playing" id="deck-a-now-playing">No track loaded</span>
+          </div>
+          <div class="player-wrapper">
+            <div id="player-a" class="yt-player"></div>
+          </div>
+          <div class="deck-controls">
+            <div class="search-wrapper">
+              <div class="url-input-group">
+                <input type="text" id="url-input-a" class="url-input" placeholder="Search YouTube or paste URL…" />
+                <button id="search-btn-a" class="btn btn-search" title="Search">🔍</button>
+                <button id="load-btn-a" class="btn btn-load">Load</button>
+                <button id="queue-btn-a" class="btn btn-queue">+ Queue</button>
+              </div>
+              <div id="search-results-a" class="search-results"></div>
+            </div>
+            <div class="seek-group">
+              <span class="time-display" id="time-current-a">0:00</span>
+              <input type="range" id="seek-a" class="seek-slider" min="0" max="100" value="0" step="0.1" />
+              <span class="time-display" id="time-duration-a">0:00</span>
+            </div>
+            <div class="transport-group">
+              <button id="prev-btn-a" class="btn btn-transport" title="Previous">⏮</button>
+              <button id="play-btn-a" class="btn btn-play" title="Play / Pause">▶</button>
+              <button id="next-btn-a" class="btn btn-transport" title="Next">⏭</button>
+            </div>
+          </div>
+          <div class="queue-section">
+            <h3 class="queue-title">Queue</h3>
+            <ul id="queue-list-a" class="queue-list"></ul>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="deck-divider"></div>
+
+        <!-- Deck B -->
+        <section id="deck-b" class="deck deck-b">
+          <div class="deck-header">
+            <span class="deck-label">DECK B</span>
+            <span class="deck-now-playing" id="deck-b-now-playing">No track loaded</span>
+          </div>
+          <div class="player-wrapper">
+            <div id="player-b" class="yt-player"></div>
+          </div>
+          <div class="deck-controls">
+            <div class="search-wrapper">
+              <div class="url-input-group">
+                <input type="text" id="url-input-b" class="url-input" placeholder="Search YouTube or paste URL…" />
+                <button id="search-btn-b" class="btn btn-search" title="Search">🔍</button>
+                <button id="load-btn-b" class="btn btn-load">Load</button>
+                <button id="queue-btn-b" class="btn btn-queue">+ Queue</button>
+              </div>
+              <div id="search-results-b" class="search-results"></div>
+            </div>
+            <div class="seek-group">
+              <span class="time-display" id="time-current-b">0:00</span>
+              <input type="range" id="seek-b" class="seek-slider" min="0" max="100" value="0" step="0.1" />
+              <span class="time-display" id="time-duration-b">0:00</span>
+            </div>
+            <div class="transport-group">
+              <button id="prev-btn-b" class="btn btn-transport" title="Previous">⏮</button>
+              <button id="play-btn-b" class="btn btn-play" title="Play / Pause">▶</button>
+              <button id="next-btn-b" class="btn btn-transport" title="Next">⏭</button>
+            </div>
+          </div>
+          <div class="queue-section">
+            <h3 class="queue-title">Queue</h3>
+            <ul id="queue-list-b" class="queue-list"></ul>
+          </div>
+        </section>
+      </main>
+
+      <!-- Crossfader Bar -->
+      <footer id="crossfader-bar">
+        <div class="crossfader-section">
+          <span class="crossfader-label label-a">A</span>
+          <input type="range" id="crossfader" class="crossfader-slider" min="0" max="100" value="50" step="1" />
+          <span class="crossfader-label label-b">B</span>
+        </div>
+        <div class="device-section">
+          <span class="device-icon">🔊</span>
+          <select id="output-device" class="device-select">
+            <option value="">Default</option>
+          </select>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
