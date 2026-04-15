@@ -86,6 +86,7 @@ export class Deck {
     this.nextBtn = document.getElementById(`next-btn-${id}`);
     this.queueList = document.getElementById(`queue-list-${id}`);
     this.nowPlaying = document.getElementById(`deck-${id}-now-playing`);
+    this.clearBtn = document.getElementById(`clear-queue-${id}`);
     this.playerContainer = this.nowPlaying.closest('.deck').querySelector('.player-wrapper');
 
     this._bindEvents();
@@ -228,6 +229,13 @@ export class Deck {
         
         // Reset the dropdown
         this.presetSelect.value = '';
+      });
+    }
+
+    // Clear Queue button
+    if (this.clearBtn) {
+      this.clearBtn.addEventListener('click', () => {
+        this.clearQueue();
       });
     }
 
@@ -448,6 +456,22 @@ export class Deck {
     if (index === this.currentIndex) return; // can't remove currently playing
     this.queue.splice(index, 1);
     if (index < this.currentIndex) this.currentIndex--;
+    this._renderQueue();
+  }
+
+  clearQueue() {
+    if (this.queue.length === 0) return;
+    
+    // Keep only the currently playing song
+    const currentSong = this.queue[this.currentIndex];
+    if (currentSong) {
+      this.queue = [currentSong];
+      this.currentIndex = 0;
+    } else {
+      this.queue = [];
+      this.currentIndex = -1;
+    }
+    
     this._renderQueue();
   }
 

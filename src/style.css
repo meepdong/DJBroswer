@@ -470,6 +470,12 @@ html, body {
   margin-bottom: 8px;
 }
 
+.queue-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .queue-title {
   font-family: var(--font-display);
   font-weight: 600;
@@ -478,6 +484,7 @@ html, body {
   text-transform: uppercase;
   color: var(--text-muted);
 }
+
 
 .preset-select {
   padding: 4px 10px;
@@ -502,6 +509,26 @@ html, body {
   background: var(--bg-card);
   color: var(--text-primary);
 }
+
+.btn-clear-queue {
+  padding: 4px 10px;
+  background: rgba(255, 77, 77, 0.05);
+  border: 1px solid rgba(255, 77, 77, 0.2);
+  border-radius: var(--radius-sm);
+  color: #ff4d4d;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-clear-queue:hover {
+  background: rgba(255, 77, 77, 0.15);
+  border-color: #ff4d4d;
+  color: #ff6666;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
+}
+
 
 .queue-list {
   list-style: none;
