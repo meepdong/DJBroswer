@@ -2,6 +2,7 @@
  * Deck — Manages a single YouTube player instance with queue, seek, search, and transport controls.
  */
 import { searchYouTube, formatDuration } from './search.js';
+import { presets } from './presets.js';
 
 // Helper: extract YouTube video ID from various URL formats
 export function extractVideoId(input) {
@@ -73,6 +74,7 @@ export class Deck {
     // DOM refs
     this.urlInput = document.getElementById(`url-input-${id}`);
     this.searchBtn = document.getElementById(`search-btn-${id}`);
+    this.presetSelect = document.getElementById(`preset-select-${id}`);
     this.loadBtn = document.getElementById(`load-btn-${id}`);
     this.queueBtn = document.getElementById(`queue-btn-${id}`);
     this.searchResults = document.getElementById(`search-results-${id}`);
@@ -172,6 +174,29 @@ export class Deck {
         this._hideSearchResults();
       }
     });
+
+    // Preset loader dropdown
+    if (this.presetSelect) {
+      this.presetSelect.addEventListener('change', (e) => {
+        const theme = e.target.value;
+        if (!theme || !presets[theme]) return;
+        
+        const playlist = presets[theme];
+        const wasEmpty = this.queue.length === 0;
+        
+        playlist.forEach(song => {
+          this._addToQueue(song.videoId, song.title);
+        });
+        
+        // If the queue was empty, instantly start playing the first track of the newly loaded preset
+        if (wasEmpty && this.queue.length > 0) {
+          this._playIndex(0);
+        }
+        
+        // Reset the dropdown
+        this.presetSelect.value = '';
+      });
+    }
 
     // Close search results when clicking outside
     document.addEventListener('click', (e) => {

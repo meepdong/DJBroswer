@@ -411,6 +411,13 @@ html, body {
   min-height: 0;
 }
 
+.queue-header-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
 .queue-title {
   font-family: var(--font-display);
   font-weight: 600;
@@ -418,7 +425,30 @@ html, body {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 8px;
+}
+
+.preset-select {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  outline: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.preset-select:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.preset-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
 }
 
 .queue-list {
