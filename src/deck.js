@@ -185,8 +185,9 @@ export class Deck {
         const wasEmpty = this.queue.length === 0;
         
         playlist.forEach(song => {
-          this._addToQueue(song.videoId, song.title);
+          this.queue.push({ videoId: song.videoId, title: song.title || 'Loading…' });
         });
+        this._renderQueue();
         
         // If the queue was empty, instantly start playing the first track of the newly loaded preset
         if (wasEmpty && this.queue.length > 0) {
