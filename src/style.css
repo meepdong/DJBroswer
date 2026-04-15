@@ -219,6 +219,58 @@ html, body {
   border: none;
 }
 
+/* Error Overlay */
+.player-error-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+  color: #fff;
+}
+
+.player-error-overlay h4 {
+  color: #ff4d4d;
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+}
+
+.player-error-overlay p {
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.btn-error-fallback {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s;
+}
+
+.btn-error-fallback:hover {
+  transform: translateY(-2px);
+  background: #ff3333;
+}
+
+
 /* ===== Deck Controls ===== */
 .deck-controls {
   display: flex;
@@ -498,6 +550,33 @@ html, body {
   color: var(--text-muted);
   min-width: 18px;
 }
+
+.queue-item-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.queue-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+}
+
+.queue-link:hover {
+  opacity: 1;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 
 .queue-item-title {
   flex: 1;

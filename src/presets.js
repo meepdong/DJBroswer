@@ -47,8 +47,8 @@ export const presets = {
     { videoId: 'ac3HkriqdGQ', title: 'Lifehouse - You and Me' }
   ],
   lineDance: [
-    { videoId: 'hjoZZmVhHqQ', title: 'Cupid Shuffle' },
-    { videoId: 'wZv62ShoStY', title: 'Cha Cha Slide' },
+    { videoId: '2uS655IuQRE', title: 'Cupid Shuffle' },
+    { videoId: 'f7uE9T_M3sc', title: 'Cha Cha Slide' },
     { videoId: 'w1F5Bjjutjc', title: 'Macarena' },
     { videoId: 'q0syIofO_JU', title: 'Wobble' },
     { videoId: 'ltw_f63ZlTo', title: 'Footloose' },

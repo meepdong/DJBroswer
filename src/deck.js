@@ -86,6 +86,7 @@ export class Deck {
     this.nextBtn = document.getElementById(`next-btn-${id}`);
     this.queueList = document.getElementById(`queue-list-${id}`);
     this.nowPlaying = document.getElementById(`deck-${id}-now-playing`);
+    this.playerContainer = this.nowPlaying.closest('.deck').querySelector('.player-wrapper');
 
     this._bindEvents();
   }
@@ -106,6 +107,7 @@ export class Deck {
       events: {
         onReady: (e) => this._onReady(e),
         onStateChange: (e) => this._onStateChange(e),
+        onError: (e) => this._onError(e),
       },
     });
   }
@@ -114,6 +116,36 @@ export class Deck {
     this.ready = true;
     this._applyVolume();
     this._startSeekLoop();
+  }
+
+  _onError(event) {
+    console.error(`YouTube Player Error (Deck ${this.id}):`, event.data);
+    // Error codes: 101/150 mean embedding is disabled
+    if (event.data === 101 || event.data === 150 || event.data === 5) {
+      const currentVideoId = this.queue[this.currentIndex]?.videoId;
+      if (currentVideoId) {
+        this._showErrorState(currentVideoId);
+      }
+    }
+  }
+
+  _showErrorState(videoId) {
+    this._hideErrorState(); // clear previous if any
+    const overlay = document.createElement('div');
+    overlay.className = 'player-error-overlay';
+    overlay.innerHTML = `
+      <h4>⚠️ Video Restricted</h4>
+      <p>The owner of this video has disabled embedding or it is blocked in your region.</p>
+      <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" class="btn-error-fallback">
+        Open in YouTube.com
+      </a>
+    `;
+    this.playerContainer.appendChild(overlay);
+  }
+
+  _hideErrorState() {
+    const existing = this.playerContainer.querySelector('.player-error-overlay');
+    if (existing) existing.remove();
   }
 
   _onStateChange(event) {
@@ -424,6 +456,7 @@ export class Deck {
     this.currentIndex = index;
     const { videoId } = this.queue[index];
     if (this.ready && this.player) {
+      this._hideErrorState();
       this.player.loadVideoById(videoId);
       this._applyVolume();
     }
@@ -464,6 +497,15 @@ export class Deck {
       titleSpan.className = 'queue-item-title';
       titleSpan.textContent = item.title;
 
+      // Link button (External YouTube link fallback)
+      const link = document.createElement('a');
+      link.className = 'queue-link';
+      link.href = `https://www.youtube.com/watch?v=${item.videoId}`;
+      link.target = '_blank';
+      link.title = 'Open in YouTube.com (Plan B)';
+      link.innerHTML = '🔗';
+      link.addEventListener('click', (e) => e.stopPropagation());
+
       const removeBtn = document.createElement('button');
       removeBtn.className = 'queue-item-remove';
       removeBtn.textContent = '✕';
@@ -476,6 +518,7 @@ export class Deck {
       li.addEventListener('click', () => this._playIndex(i));
       li.appendChild(indexSpan);
       li.appendChild(titleSpan);
+      li.appendChild(link); // Always show link
       if (i !== this.currentIndex) li.appendChild(removeBtn);
       this.queueList.appendChild(li);
     });
