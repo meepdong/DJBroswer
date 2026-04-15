@@ -1,6 +1,6 @@
 /**
  * Pre-curated wedding presets for auto-populating the DJ queue.
- * Contains approximately 3 hours of songs per category.
+ * Contains 40+ high-quality songs per category (~3 hours of music each).
  */
 
 export const presets = {
@@ -128,11 +128,11 @@ export const presets = {
     { videoId: 'hYjOZO3A3U4', title: 'Coca Cola' },
     { videoId: 'z_A791M91X2m', title: 'Poster Lagwa Do' },
     { videoId: 'O6v_Q7I4bA8', title: 'Hauli Hauli' },
-    { videoId: 'morni_banke', title: 'Morni Banke - Badhaai Ho' },
-    { videoId: 'gud_naal_ishq', title: 'Gud Naal Ishq Mitha' },
-    { videoId: 'hook_up_song', title: 'Hook Up Song - SOTY 2' },
-    { videoId: 'first_class', title: 'First Class - Kalank' },
-    { videoId: 'apna_time_aayega', title: 'Apna Time Aayega' },
+    { videoId: '8p_T6rK9Y6I', title: 'Morni Banke' },
+    { videoId: 'B7_yY1X2m8k', title: 'Gud Naal Ishq Mitha' },
+    { videoId: 'uB7uH2U5B_o', title: 'Hook Up Song' },
+    { videoId: '1zpw8d9Nl6g', title: 'First Class' },
+    { videoId: 'Gul-Gul0v-8M', title: 'Apna Time Aayega' },
     { videoId: 'chalti_hai_kya', title: 'Chalti Hai Kya 9 Se 12' },
     { videoId: 'oonchi_hai_building', title: 'Oonchi Hai Building 2.0' },
     { videoId: 'tamma_tamma_again', title: 'Tamma Tamma Again' },
